@@ -3,6 +3,7 @@ package main
 import(
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin" //its web app framwork
 	"github.com/betonomochalka/go-react-calorie-tracker/routes" //routes
 )
@@ -22,13 +23,13 @@ func main(){
 	router.Use(gin.Logger())
 	router.Use(cors.Default())
 
-	router.POST("/entry/create", routes.CreateEntry)
+	router.POST("/entry/create", routes.CreateEntries)
 	router.GET("/entries", routes.GetEntries)
 	router.GET("/entries/:id", routes.GetEntriesByID)
 	router.GET("/ingredient/:ingredient", routes.GetEntriesByIngredients)
 
 	router.PUT("/entry/update/:id", routes.UpdateEntry)
-	router.PUT("/ingridient/update/:id", routes.UpdateIngridient)
+	router.PUT("/ingredient/update/:id", routes.UpdateIngredient)
 	router.DELETE("/entry/delete/:id", routes.DeleteEntry)
 	router.Run(":" + port) //runs the server on port 8000
 }
